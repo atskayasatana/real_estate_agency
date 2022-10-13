@@ -4,7 +4,7 @@ from .models import Flat
 
 
 class FlatAdmin(admin.ModelAdmin):
-    fields = ('town', 'address', 'owner', 'created_at')
+    fields = ('town', 'address', 'owner', 'new_building', 'created_at')
     search_fields = ('town', 'address')
     readonly_fields = ('created_at', )
 
