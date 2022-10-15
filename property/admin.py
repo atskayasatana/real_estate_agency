@@ -12,6 +12,8 @@ class FlatAdmin(admin.ModelAdmin):
               'new_building',
               'price',
               'liked_by',
+              'owners_phonenumber',
+              'owners_pure_phone',      
               'created_at')
     search_fields = ('town', 'address')
     readonly_fields = ('created_at', )
@@ -22,6 +24,8 @@ class FlatAdmin(admin.ModelAdmin):
                     'construction_year',
                     'new_building',
                     'price',
+                    'owners_phonenumber',
+                    'owners_pure_phone',
                     'created_at')
 
     list_editable = ('new_building',)
