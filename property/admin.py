@@ -2,6 +2,7 @@ from django.contrib import admin
 
 from .models import Complaint
 from .models import Flat
+from .models import Owner
 
 
 class FlatAdmin(admin.ModelAdmin):
@@ -13,7 +14,7 @@ class FlatAdmin(admin.ModelAdmin):
               'price',
               'liked_by',
               'owners_phonenumber',
-              'owners_pure_phone',      
+              'owners_pure_phone',
               'created_at')
     search_fields = ('town', 'address')
     readonly_fields = ('created_at', )
@@ -38,3 +39,8 @@ class ComplaintAdmin(admin.ModelAdmin):
     fields = ('user', 'flat', 'text')
     raw_id_fields = ('user', 'flat')
 admin.site.register(Complaint, ComplaintAdmin)
+
+class OwnerAdmin(admin.ModelAdmin):
+    fields = ('owners', 'owners_phonenumber', 'owners_pure_phone', 'flat')
+    raw_id_fields = ('flat',)
+admin.site.register(Owner, OwnerAdmin)
