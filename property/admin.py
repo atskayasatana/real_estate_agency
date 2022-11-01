@@ -5,6 +5,12 @@ from .models import Flat
 from .models import Owner
 
 
+class OwnerInstanceInline(admin.TabularInline):
+    model = Flat.flat_owner.through
+    raw_id_fields = ['owner']
+    fields = ('owner',)
+    list_display = ('owner',)
+
 class FlatAdmin(admin.ModelAdmin):
     fields = ('town',
               'address',
@@ -32,6 +38,7 @@ class FlatAdmin(admin.ModelAdmin):
     list_editable = ('new_building',)
     list_filter = ('new_building', 'has_balcony', 'rooms_number')
     raw_id_fields = ('liked_by',)
+    inlines = [OwnerInstanceInline]
 admin.site.register(Flat, FlatAdmin)
 
 
@@ -45,3 +52,9 @@ class OwnerAdmin(admin.ModelAdmin):
     list_display = ('owner', 'owners_phonenumber', 'owners_pure_phone')
     raw_id_fields = ('flat',)
 admin.site.register(Owner, OwnerAdmin)
+
+
+class OwnerInstanceInline(admin.TabularInline):
+    model=Flat.flat_owner.through
+    raw_id_fields = ('flat', 'owner')
+    list_display = ('owner.phone_number')
