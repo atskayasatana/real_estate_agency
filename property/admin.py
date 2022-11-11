@@ -10,6 +10,7 @@ class OwnerInstanceInline(admin.TabularInline):
     fields = ('owner',)
     list_display =('owner')
 
+@admin.register(Flat)
 class FlatAdmin(admin.ModelAdmin):
     fields = ('town',
               'address',
@@ -32,16 +33,15 @@ class FlatAdmin(admin.ModelAdmin):
     list_filter = ('new_building', 'has_balcony', 'rooms_number')
     raw_id_fields = ('liked_by',)
     inlines = (OwnerInstanceInline,)
-admin.site.register(Flat, FlatAdmin)
 
-
+@admin.register(Complaint)
 class ComplaintAdmin(admin.ModelAdmin):
     fields = ('user', 'flat', 'text')
     raw_id_fields = ('user', 'flat')
-admin.site.register(Complaint, ComplaintAdmin)
 
+@admin.register(Owner)
 class OwnerAdmin(admin.ModelAdmin):
     fields = ('owner', 'owners_phonenumber', 'owners_pure_phone', 'flat')
     list_display = ('owner', 'owners_phonenumber', 'owners_pure_phone')
     raw_id_fields = ('flat',)
-admin.site.register(Owner, OwnerAdmin)
+
