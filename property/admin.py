@@ -5,7 +5,7 @@ from .models import Flat
 from .models import Owner
 
 class OwnerInstanceInline(admin.TabularInline):
-    model=Flat.flat_owner.through
+    model=Flat.owners_flats.through
     raw_id_fields = ('flat','owner')
     fields = ('owner',)
     list_display =('owner')
