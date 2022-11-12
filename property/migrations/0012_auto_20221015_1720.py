@@ -6,7 +6,8 @@ from phonenumber_field.phonenumber import PhoneNumber
 
 def get_normalized_phone_number(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
-    for flat in Flat.objects.all():
+    flat_set = Flat.objects.all()
+    for flat in flat_set.iterator():
         raw_phone_number = flat.owners_phonenumber
         parsed_phone_number = phonenumbers.parse(raw_phone_number,"RU")
         if (parsed_phone_number.country_code==7 and
