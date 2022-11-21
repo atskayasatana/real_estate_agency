@@ -68,17 +68,17 @@ class Complaint(models.Model):
                              default=1,
                              on_delete=models.CASCADE,
                              verbose_name='Кто пожаловался',
-                             related_name='user_complaint')
+                             related_name='complaints')
     flat = models.ForeignKey(Flat,
                              on_delete=models.CASCADE,
                              verbose_name='Квартира, на которую пожаловались',
-                             related_name='complaint')
+                             related_name='complaints')
 
     text = models.TextField(verbose_name='Текст жалобы')
 
 
 class Owner(models.Model):
-    owner = models.CharField('ФИО Владельца', max_length=200, db_index=True)
+    name = models.CharField('ФИО Владельца', max_length=200, db_index=True)
     phone = models.CharField('Номер владельца', max_length=10, default='')
     owners_pure_phone = PhoneNumberField(
                             default='',
@@ -90,4 +90,4 @@ class Owner(models.Model):
                                   related_name='owners')
 
     def __str__(self):
-        return f'{self.owner}'
+        return f'{self.name}'
