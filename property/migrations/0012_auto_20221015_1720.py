@@ -20,11 +20,6 @@ def get_normalized_phone_number(apps, schema_editor):
             flat.owners_pure_phone = 'Не удалось получить номер'
         flat.save()
 
-def move_backward(apps, schema_editor):
-    Flat = apps.get_model('property', 'Flat')
-    for flat in Flat.objects.all():
-        flat.owners_pure_phone = ''
-        flat.save()
 
 class Migration(migrations.Migration):
 
