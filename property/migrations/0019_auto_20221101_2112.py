@@ -17,17 +17,6 @@ def link_flats_to_owner(apps, schema_editor):
         flat.flat_owner.add(owner)
 
 
-def move_backward(apps, schema_editor):
-    Flat = apps.get_model('property', 'Flat')
-    Owner = apps.get_model('property', 'Owner')
-
-    for flat in Flat.objects.all():
-        owner_name=flat.owner
-        owners_purephone = flat.owners_pure_phone
-        owner = Owner.objects.get(owner=owner_name, owners_pure_phone=owners_purephone)
-        flat.flat_owner.remove(owner)
-
-
 class Migration(migrations.Migration):
 
     dependencies = [
